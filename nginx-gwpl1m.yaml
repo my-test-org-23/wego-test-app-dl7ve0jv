@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-nginx-gwpl1m
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-gwpl1m
+  namespace: my-nginx-gwpl1m
+  labels:
+    name: nginx-gwpl1m
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nginx-gwpl1m
+  template:
+    metadata:
+      namespace: my-nginx-gwpl1m
+      labels:
+        name: nginx-gwpl1m
+    spec:
+      containers:
+      - name: nginx-gwpl1m
+        image: nginx
+        ports:
+        - containerPort: 80
+
